@@ -1,88 +1,68 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
 import { Visit } from "./visit";
+import { PathologicalArterialHyperthension } from "./pathological_arterial_hyperthensions";
 
-export const Patient = sequelize.define(
-  "patient",
+export const ArterialHypertension = sequelize.define(
+  "arterial_hypertension",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
-      type: DataTypes.STRING,
-    },
-    date_birth: {
-      type: DataTypes.DATE,
-    },
-    date_arrive: {
-      type: DataTypes.DATE,
-    },
-    date_leave: {
-      type: DataTypes.DATE,
-    },
-    ib: {
-      type: DataTypes.STRING,
-    },
-    gender_id: {
+    stage: {
       type: DataTypes.INTEGER,
     },
-    family_history_id: {
+    risk_before_stroke: {
       type: DataTypes.INTEGER,
     },
-    children: {
+    therapy_before_id: {
       type: DataTypes.INTEGER,
     },
-    education_id: {
+    therapy_id: {
       type: DataTypes.INTEGER,
     },
-    nationality_id: {
+    drugs_combination_id: {
       type: DataTypes.INTEGER,
     },
-    is_newcomer: {
-      type: DataTypes.BOOLEAN,
-    },
-    migration_id: {
+    emergency_help_id: {
       type: DataTypes.INTEGER,
     },
-    is_disabled_person: {
-      type: DataTypes.BOOLEAN,
-    },
-    disability_group_id: {
+    systolic_blood_pressure_before: {
       type: DataTypes.INTEGER,
     },
-    disabilty_date: {
-      type: DataTypes.DATE,
-    },
-    occupation_id: {
+    systolic_blood_pressure: {
       type: DataTypes.INTEGER,
     },
-    occupation_harm_id: {
+    diastolic_blood_pressure_before: {
       type: DataTypes.INTEGER,
     },
-    bad_habits_id: {
+    diastolic_blood_pressure: {
       type: DataTypes.INTEGER,
     },
-    somatotype_id: {
+    duration_years: {
       type: DataTypes.INTEGER,
     },
-    past_illnesses_id: {
+    therapy_duration_years: {
       type: DataTypes.INTEGER,
     },
-    family_relationships: {
+    catastrophy_relation_id: {
       type: DataTypes.INTEGER,
     },
-    products: {
+    catastrophy_id: {
       type: DataTypes.INTEGER,
     },
-    family_rules: {
+    catastrophy_years: {
       type: DataTypes.INTEGER,
     },
-    transportation_things: {
+    target_organs_id: {
       type: DataTypes.INTEGER,
     },
-    personal_usage_things: {
+    inheritance_id: {
+      type: DataTypes.INTEGER,
+    },
+    pathological_type_id: {
       type: DataTypes.INTEGER,
     },
   },

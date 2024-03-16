@@ -1,66 +1,40 @@
-import express, { Express, NextFunction, Request, Response } from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import { Patient } from "./models/patient";
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import { FamilyHistory, Gender } from "./models";
+import { Education, Region } from "./models/values";
+const { sequelize } = require("./instances/sequelize");
 
-dotenv.config();
+require("./models");
+require("./instances/associations");
 
-const databaseUrl =
-  process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/hospital";
-const port = process.env.PORT || 3001;
-const app: Express = express();
+const app = express();
+const port = 3001;
 
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use(function (req: Request, res: Response, next: NextFunction) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Access-Control-Allow-Headers"
-  );
-  next();
+app.get("/", (req, res, next) => {
+  res.json("Hello world");
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+app.get("/family-histories/", (req, res, next) => {
+  FamilyHistory.findAll().then((result) => res.json(result));
 });
 
-app.get(
-  "/patients",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const allPatients = await Patient.find();
-      res.status(200).json(allPatients);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+app.get("/genders/", (req, res, next) => {
+  Gender.findAll().then((result) => res.json(result));
+});
 
-app.post(
-  "/patients",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const newPatient = new Patient({ ...req.body });
-      const insertedPatient = await newPatient.save();
-      res.status(201).json(insertedPatient);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+app.get("/education/", (req, res, next) => {
+  Education.findAll().then((result) => res.json(result));
+});
 
-const start = async () => {
-  try {
-    await mongoose.connect(databaseUrl);
-    app.listen(process.env.PORT, () =>
-      console.log("Server started on port 3001")
-    );
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-};
+app.get("/regions/", (req, res, next) => {
+  Region.findAll().then((result) => res.json(result));
+});
 
-start();
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}`);
+});
