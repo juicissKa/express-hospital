@@ -1,22 +1,25 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
 
-export const Test = sequelize.define(
-  "test",
+export const Stroke = sequelize.define(
+  "stroke",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    type_id: {
+    stroke_days: {
       type: DataTypes.INTEGER,
     },
-    value: {
-      type: DataTypes.DECIMAL,
+    stroke_causes: {
+      type: DataTypes.STRING,
     },
-    on_arrival: {
-      type: DataTypes.BOOLEAN,
+    stroke_result_id: {
+      type: DataTypes.INTEGER,
+    },
+    stroke_date: {
+      type: DataTypes.DATE,
     },
   },
   { timestamps: false }

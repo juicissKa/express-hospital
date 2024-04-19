@@ -85,9 +85,6 @@ export const HeartIssue = sequelize.define(
     myocardial_dystrophy: {
       type: DataTypes.INTEGER,
     },
-    tomography_id: {
-      type: DataTypes.INTEGER,
-    },
   },
   { timestamps: false }
 );

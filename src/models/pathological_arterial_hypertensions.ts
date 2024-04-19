@@ -1,8 +1,8 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
 
-export const Test = sequelize.define(
-  "test",
+export const PathologicalArterialHypertension = sequelize.define(
+  "pathological_arterial_hypertension",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,11 +12,14 @@ export const Test = sequelize.define(
     type_id: {
       type: DataTypes.INTEGER,
     },
-    value: {
-      type: DataTypes.DECIMAL,
+    syncopes: {
+      type: DataTypes.INTEGER,
     },
-    on_arrival: {
-      type: DataTypes.BOOLEAN,
+    syncopes_periodicity: {
+      type: DataTypes.INTEGER,
+    },
+    therapy_id: {
+      type: DataTypes.INTEGER,
     },
   },
   { timestamps: false }

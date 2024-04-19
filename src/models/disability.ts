@@ -1,22 +1,19 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
 
-export const Test = sequelize.define(
-  "test",
+export const Disability = sequelize.define(
+  "disability",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    type_id: {
+    group_id: {
       type: DataTypes.INTEGER,
     },
-    value: {
-      type: DataTypes.DECIMAL,
-    },
-    on_arrival: {
-      type: DataTypes.BOOLEAN,
+    date: {
+      type: DataTypes.DATE,
     },
   },
   { timestamps: false }

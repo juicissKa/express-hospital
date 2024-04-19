@@ -1,7 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
-import { Visit } from "./visit";
-import { PathologicalArterialHyperthension } from "./pathological_arterial_hyperthensions";
 
 export const ArterialHypertension = sequelize.define(
   "arterial_hypertension",
@@ -60,9 +58,6 @@ export const ArterialHypertension = sequelize.define(
       type: DataTypes.INTEGER,
     },
     inheritance_id: {
-      type: DataTypes.INTEGER,
-    },
-    pathological_type_id: {
       type: DataTypes.INTEGER,
     },
   },

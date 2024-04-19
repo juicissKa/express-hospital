@@ -1,8 +1,8 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../instances/sequelize";
 
-export const Test = sequelize.define(
-  "test",
+export const Occupation = sequelize.define(
+  "occupation",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,11 +12,8 @@ export const Test = sequelize.define(
     type_id: {
       type: DataTypes.INTEGER,
     },
-    value: {
-      type: DataTypes.DECIMAL,
-    },
-    on_arrival: {
-      type: DataTypes.BOOLEAN,
+    harm_id: {
+      type: DataTypes.INTEGER,
     },
   },
   { timestamps: false }

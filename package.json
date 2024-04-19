@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
+    "pluralize": "^8.0.0",
     "sequelize": "^6.37.1"
   },
   "devDependencies": {
@@ -34,7 +35,6 @@
     "@types/express": "^4.17.21",
     "@types/express-validator": "^3.0.0",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^20.11.22",
     "@types/sequelize": "^4.28.20",
     "nodemon": "^3.0.2",

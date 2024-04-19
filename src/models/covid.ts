@@ -10,6 +10,9 @@ export const Covid = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    type_id: {
+      type: DataTypes.INTEGER,
+    },
     complications_id: {
       type: DataTypes.INTEGER,
     },

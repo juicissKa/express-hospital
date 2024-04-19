@@ -22,8 +22,29 @@ export const Visit = sequelize.define(
     patient_id: {
       type: DataTypes.INTEGER,
     },
+    date_arrive: {
+      type: DataTypes.DATE,
+    },
+    date_leave: {
+      type: DataTypes.DATE,
+    },
     date_visit: {
       type: DataTypes.DATE,
+    },
+    family_history_id: {
+      type: DataTypes.INTEGER,
+    },
+    children: {
+      type: DataTypes.INTEGER,
+    },
+    education_id: {
+      type: DataTypes.INTEGER,
+    },
+    bad_habits_id: {
+      type: DataTypes.INTEGER,
+    },
+    past_illnesses_id: {
+      type: DataTypes.INTEGER,
     },
     appearance_id: {
       type: DataTypes.INTEGER,
@@ -43,79 +64,19 @@ export const Visit = sequelize.define(
     vn_days: {
       type: DataTypes.INTEGER,
     },
-    stroke_days: {
-      type: DataTypes.INTEGER,
-    },
-    stroke_causes: {
-      type: DataTypes.INTEGER,
-    },
-    stroke_result_id: {
-      type: DataTypes.INTEGER,
-    },
-    stroke_date: {
-      type: DataTypes.DATE,
-    },
-    onmk_id: {
-      type: DataTypes.INTEGER,
-    },
-    hospitalization_id: {
-      type: DataTypes.INTEGER,
-    },
-    hospitalization_hours: {
-      type: DataTypes.INTEGER,
-    },
-    nihss_on_arrival: {
-      type: DataTypes.INTEGER,
-    },
-    renkin_on_arrival: {
-      type: DataTypes.INTEGER,
-    },
-    rivermid_on_arrival: {
-      type: DataTypes.INTEGER,
-    },
     him: {
       type: DataTypes.INTEGER,
     },
     apnea_id: {
       type: DataTypes.INTEGER,
     },
-    covid_id: {
-      type: DataTypes.INTEGER,
-    },
-    arterial_hypertension_id: {
-      type: DataTypes.INTEGER,
-    },
-    diabetes_id: {
-      type: DataTypes.INTEGER,
-    },
-    nervous_system_id: {
-      type: DataTypes.INTEGER,
-    },
-    heart_issue_id: {
-      type: DataTypes.INTEGER,
-    },
     botulinum_therapy: {
       type: DataTypes.BOOLEAN,
-    },
-    tests_id: {
-      type: DataTypes.INTEGER,
-    },
-    therapies_id: {
-      type: DataTypes.INTEGER,
     },
     visit_number_id: {
       type: DataTypes.INTEGER,
     },
-    gynecological_status_id: {
-      type: DataTypes.INTEGER,
-    },
-    birth_control_pills: {
-      type: DataTypes.BOOLEAN,
-    },
     nutrition_id: {
-      type: DataTypes.INTEGER,
-    },
-    medical_functions_id: {
       type: DataTypes.INTEGER,
     },
   },
