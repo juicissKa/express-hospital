@@ -12,7 +12,6 @@ export const values_names: string[] = [
   "disability_group",
   "bad_habits",
   "somatotype",
-  "past_illnesses",
   "somatotype",
   "hospitalization_type",
   "appearance",
@@ -29,8 +28,6 @@ export const values_names: string[] = [
   "disability_group",
   "diabete_type",
   "diabete_treatment",
-  "diabete_sugar_before_eating",
-  "diabete_sugar_after_eating",
   "nervous_system_polyneuropathy",
   "nervous_system_complication",
   "nervous_system_atherosclerosis",
@@ -41,7 +38,6 @@ export const values_names: string[] = [
   "heart_issue_disaggregants",
   "heart_issue_coagulopathies",
   "heart_failure_type",
-  "heart_failure_stage",
   "heart_issue_cerebral_atherosclerosis",
   "heart_issue_cvb_atherosclerosis",
   "heart_issue_lower_limbs_atherosclerosis",
@@ -67,7 +63,6 @@ export const values_names: string[] = [
   "pathological_arterial_hypertension_therapy",
   "heart_issue_extrasystole_type",
   "diabete_compensation",
-  "diabete_him",
   "test_type",
 ];
 const values: Record<string, ModelStatic<Model<any, any>>> = {};

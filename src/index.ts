@@ -2,9 +2,23 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { values, values_names } from "./models/values/values";
-import { Disability, Migration, Occupation, Patient } from "./models";
+import {
+  ArterialHypertension,
+  Covid,
+  Diabete,
+  Disability,
+  HeartIssue,
+  Migration,
+  NervousSystem,
+  Occupation,
+  PathologicalArterialHypertension,
+  Patient,
+  Test,
+  Visit,
+} from "./models";
 import { Op } from "sequelize";
 import { before } from "node:test";
+import { Hospitalization } from "./models/hospitalization";
 
 const pluralize = require("pluralize");
 
@@ -119,7 +133,6 @@ app.get("/visits/create-form-data/", async (req, res, next) => {
         types: await values.diabete_type.findAll(),
         treatments: await values.diabete_treatment.findAll(),
         compensations: await values.diabete_compensation.findAll(),
-        hims: await values.diabete_him.findAll(),
       },
       nervous_system: {
         polyneuropathies: await values.nervous_system_polyneuropathy.findAll(),
@@ -138,7 +151,6 @@ app.get("/visits/create-form-data/", async (req, res, next) => {
         coagulopathies: await values.heart_issue_coagulopathies.findAll(),
         heart_failure: {
           type: await values.heart_failure_type.findAll(),
-          stage: await values.heart_failure_stage.findAll(),
         },
         atherosclerosis: {
           cerebrals:
@@ -199,6 +211,51 @@ app.get("/visits/create-form-data/", async (req, res, next) => {
     },
   };
   res.json(data);
+});
+
+app.post("/visits/create/", async (req, res, next) => {
+  const { hospitalization, illnesses, tests, ...mainInfo } = req.body;
+  const {
+    covid,
+    nervous_system,
+    diabete,
+    heart_issue,
+    disability,
+    arterial_hypertension,
+  } = illnesses;
+
+  const visit = await Visit.create({ ...mainInfo });
+
+  const visit_id = visit.toJSON().id;
+
+  hospitalization &&
+    (await Hospitalization.create({ ...hospitalization, visit_id }));
+  covid && (await Covid.create({ ...covid, visit_id }));
+  nervous_system &&
+    (await NervousSystem.create({ ...nervous_system, visit_id }));
+  diabete && (await Diabete.create({ ...diabete, visit_id }));
+  heart_issue && (await HeartIssue.create({ ...heart_issue, visit_id }));
+  disability && (await Disability.create({ ...disability, visit_id }));
+
+  if (arterial_hypertension) {
+    const { pathological, ...arterial_hypertension_main_values } =
+      arterial_hypertension;
+    const ah = await ArterialHypertension.create({
+      ...arterial_hypertension_main_values,
+      visit_id,
+    });
+    const arterial_hypertension_id = ah.toJSON().id;
+    pathological &&
+      (await PathologicalArterialHypertension.create({
+        ...pathological,
+        arterial_hypertension_id,
+      }));
+  }
+
+  tests.length > 0 &&
+    (await Test.bulkCreate(tests.map((test: any) => ({ ...test, visit_id }))));
+
+  res.json(visit);
 });
 
 app.listen(port, () => {
